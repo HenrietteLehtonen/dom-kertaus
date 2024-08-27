@@ -1,3 +1,5 @@
+'use strict';
+
 // array for todo list
 const todoList = [
   {
@@ -27,4 +29,22 @@ const todoList = [
   },
 ];
 
+// NPM I !!
+
 // add your code here
+const kohde = document.querySelector('#target');
+
+for (const todo of todoList) {
+  let checkAttr = '';
+  if (todo.completed === true) {
+    checkAttr = 'checked';
+  }
+  let html = `<li>
+                <input type="checkbox" id="todo-${todo.id}" ${checkAttr}>
+                <label for="todo-${todo.id}">${todo.task}</label>
+              </li>`;
+
+  kohde.insertAdjacentHTML('beforeend', html);
+}
+
+// for todo id -> yhdistää labelin, voidaan klikata koko tsydeemiä, ei pelkästään checkboxia
