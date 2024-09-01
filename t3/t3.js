@@ -1,30 +1,19 @@
 'use strict';
 
-document.getElementById('target').innerHTML =
-  'Browser data: ' + navigator.userAgent;
+// mihin lisätään tieto
+const kohde = document.querySelector('#target');
 
-document.getElementById('hw').innerHTML =
-  'Screen width: ' +
-  screen.width +
-  'px<br>' +
-  'Screen height: ' +
-  screen.height +
-  'px';
+const bData = `<p>Browser data: ${navigator.userAgent}</p>`;
+const naytto = `<p>Screen width: ${screen.width}</p><p>Screen heigth: ${screen.height}</p>`;
+const av = `<p>Avaible screen space: ${screen.availHeight}px ${screen.availWidth}px</p> `;
 
-document.getElementById(
-  'ah'
-).innerHTML = `Avaible screen space: ${screen.availHeight}px ${screen.availWidth}px `;
-
-setInterval(myTimer, 1000);
-
-function myTimer() {
-  const d = new Date();
-  document.getElementById('time').innerHTML = 'Time: ' + d.toLocaleTimeString();
-  +d;
-}
 const today = new Date().toLocaleDateString('fi-FI', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
-document.getElementById('date').innerHTML = 'Date: ' + today;
+
+const d = new Date();
+const aika = d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
+kohde.innerHTML = bData + naytto + av + `<p>${today}</p>` + `<p>${aika}</p>`;
