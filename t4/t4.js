@@ -771,3 +771,50 @@ const restaurants = [
 ];
 
 // your code here
+
+const kohde = document.querySelector('tbody');
+
+// OMAN KOORDINAATIN HAKU
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    pos.innerHTML = 'Geolocation is not supported by this browser.';
+  }
+}
+
+let x1;
+let y1;
+
+function showPosition(position) {
+  y1 = position.coords.latitude;
+  x1 = position.coords.longitude;
+
+  console.log(`LAT: ${x1} LON:${y1}`);
+}
+getLocation();
+
+// käydään raflat läpi
+for (const restaurant of restaurants) {
+  const [x2, y2] = restaurant.location.coordinates;
+  // const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+  console.log(
+    `Ravintola: ${restaurant.name}, Latitude: ${x2}, Longitude: ${y2}`
+  );
+
+  // luodaan td elementit nimille ja osoitteelle
+  const nimi = document.createElement('td');
+  nimi.innerText = restaurant.name;
+
+  const osoite = document.createElement('td');
+  osoite.innerText = restaurant.address;
+
+  // tehdään rivit
+  const rivi = document.createElement('tr');
+  rivi.append(nimi, osoite);
+  kohde.append(rivi);
+}
+
+/* pisteiden välinen etäisyys const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)*/

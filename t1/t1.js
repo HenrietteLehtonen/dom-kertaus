@@ -36,10 +36,12 @@ const kohde = document.querySelector('#target');
 
 for (const todo of todoList) {
   let checkAttr = '';
+  // tsekataan onko completed true -> laitetaan automaattisesti raksi
   if (todo.completed === true) {
     checkAttr = 'checked';
   }
-  let html = `<li>
+  // lisätään lista html puolelle
+  const html = `<li>
                 <input type="checkbox" id="todo-${todo.id}" ${checkAttr}>
                 <label for="todo-${todo.id}">${todo.task}</label>
               </li>`;

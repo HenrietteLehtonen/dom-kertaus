@@ -34,18 +34,21 @@ const todoList = [
 const lista = document.querySelector('#target');
 
 for (const todo of todoList) {
+  // tehdään checkbox
   const input = document.createElement('input');
   input.type = 'checkbox';
   input.id = 'todo-' + todo.id;
   input.checked = todo.completed;
 
+  // label
   const label = document.createElement('label');
-  label.htmlFor = 'todo-' + todo.id;
+  label.htmlFor = 'todo-' + todo.id; // <label for =" todo- + numero(id)"
   label.innerText = todo.task;
 
+  // lista
   const li = document.createElement('li');
-  li.appendChild(input);
-  li.appendChild(label);
+  li.appendChild(input); // listaan lisätään input
+  li.appendChild(label); // listaan lisätään label
 
   lista.appendChild(li);
 }

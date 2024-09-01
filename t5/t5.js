@@ -771,3 +771,30 @@ const restaurants = [
 ];
 
 // your code here
+
+// OMA SIJAINTI
+
+// KARTTA
+
+let map = L.map('map').setView([24.7586024, 60.223184], 12);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
+
+// ravintolat läpi
+for (const restaurant of restaurants) {
+  // haetaan koordinaatit
+  const koordinaatit = restaurant.location.coordinates;
+  // muuttujat koordinaateille
+  const long = koordinaatit[0];
+  const lat = koordinaatit[1];
+
+  // MARKKERI
+  L.marker([lat, long])
+    .addTo(map)
+    .bindPopup(`<h3>${restaurant.name}</h3><p>${restaurant.address}</p>`)
+    .openPopup();
+}
